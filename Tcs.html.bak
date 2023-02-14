@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <title>Tcs Enrollment form</title>
+  
+ 
+  <style>
+  div{
+  width:600px;
+  background-color:#66ff00;
+  margin:auto;
+  border-radius:20px;
+  padding:20px;
+ }
+  </style>
+ </head>
+ <body>
+  <div>
+  <form id="frm" action="register.jsp">
+<h3 style="background:#f3f3f3;color:green"><img src="images\home.png"width="20px" height="20px" />TCS NextStep</h3>
+  <h5 align="right"><button>login</button></h5>
+  <label>Name<span style="color:red">*</span></label><br>
+  <select id="name" name="name"><br>
+  <option value="">Title</option>
+  <option value="1">Mr.</option>
+    <option value="2">Ms.</option>
+    <option value="3">Mrs.</option>
+     </select>
+	 <input type="text" id="tx" name="tx" placeholder="first name" required/>
+   <input type="text" id="ty" name="ty" placeholder="middle name" />
+    <input type="text" id="tz" name="tz" placeholder="surname" required/>
+     </select><br><br>
+	 <label>Date of birth<span style="color:red">*</span></label><br>
+	 <input type='date' id="dt" name="dt" required/><br><br>
+	 <label>Gender<span style="color:red">*</span></label><br>
+  <select id="gender" name="gender"><br>
+  <option value="">select</option>
+  <option value="1">F</option>
+    <option value="2">M</option>
+    <option value="3">Others</option>
+     </select><br><br>
+	 <label>Email id<span style="color:red">*</span></label><br>
+	 <input type='email' id="mid" name="mid" required/><br><br>
+ <label>Mobile number<span style="color:red">*</span></label><br>
+	 <select id="no" name="no"><br><br>
+  <option value="">IN</option>
+  <option value="volvo">+91</option>
+    <option value="saab">+93</option>
+    <option value="fiat">+64</option>
+	<input type="text" id="tx" name="tx" placeholder="+91 Enter Mobile Number" maxlength="10" required/>
+     </select><br><br>
+	 <label>Institute Name<span style="color:red">*</span></label><br>
+	 <input type="text" id="na" name="na"/><br><br>
+	 <label>Qualification<span style="color:red">*</span></label><br>
+	 <select id="qli" name="qli"><br>
+  <option value="">select</option>
+  <option value="volvo">BACHELOR OF TECHNOLOGY(B.TECH)</option>
+    <option value="saab">BACHELOR OF ENGINERING</option>
+    <option value="fiat">BACHLELOR OF SCIENCE</option>
+	 <option value="volvo">B.COM</option>
+    <option value="saab">B.S.C</option>
+    <option value="fiat">M.TECH</option>
+	 <option value="volvo">Mba</option>
+    <option value="saab">Mca</option>
+    <option value="fiat">Msc</option>
+	 <option value="volvo">BATCHELOR OF ZUOLAOGY AND SCIENCE(Bzc)</option>
+    <option value="saab">BACHELOR OF ART</option>
+    <option value="fiat">BACHLELOR OF IRRIGATION ENGINEERING</option>
+     </select><br><br>
+	 <label>Year Of passing(for hieghest qualification)<span style="color:red">*</span></label><br>
+	 <select id="pass" name="pass"><br>
+  <option value="">select</option>
+  <option value="volvo">2022</option>
+    <option value="saab">2021</option>
+    <option value="fiat">2020</option>
+	 <option value="volvo">2019</option>
+    <option value="saab">2018</option>
+    <option value="fiat">2017</option>
+	 <option value="volvo">2016</option>
+	 </select><br><br>
+	 <label>Nearest Test Location<span style="color:red">*</span></label><br>
+	 <select id="pass" name="pass"><br>
+  <option value="">select</option>
+  <option value="volvo">Hyderabad</option>
+    <option value="saab">Chennai</option>
+    <option value="fiat">Mumbai</option>
+	 <option value="volvo">Lackno</option>
+    <option value="saab">Vijayavada</option>
+    <option value="fiat">Ongole</option>
+	 <option value="volvo">Rajamandri</option>
+	 <option value="saab">Banglore(city1)</option>
+    <option value="fiat">Vizag</option>
+	 <option value="volvo">Nellore</option>
+    <option value="saab">Gorgen</option>
+    <option value="fiat">Geogrem</option>
+	 <option value="volvo">Noida</option>
+	 </select><br><br>
+	 <label>Enter Password<span style="color:red">*</span><span style="color:cyan">#ff0000</span></label><br>
+	 <input type="password" id="tx" name="tx" required/><br><br>
+	  <label>Re-Enter Password<span style="color:red">*</span></label><br>
+	 <input type="password" id="tx" name="tx" required/><br><br>
+	  <label>Select Security Question<span style="color:red">*</span></label><br>
+	 <select id="sq" name="sq"><br>
+  <option value="">select</option>
+  <option value="volvo">What is your Natanolity.?</option>
+    <option value="saab">Favarite pet Name.?</option>
+    <option value="fiat">What is Your Teacher Name.?</option>
+	 <option value="volvo">What is Your Mobile number</option>
+    <option value="saab">What is your Favarite food</option>
+    <option value="fiat">What is Your First school.?</option>
+	</select><br><br>
+	<label>Answer to security Questions<span style="color:red">*</span></label><br>
+	<input type="text" id="tx" name="tx" required/><br><br>
+	<button name="sb">submit</button>&nbsp;<input type="reset" value="clear all"/> 
+ </form>
+</div>
+ </html>
