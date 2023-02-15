@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  
+  <title>ex30</title>
+  <link rel="icon" href="C:\html\images\preferences-color.png"/>                                             
+ </head>
+ <body>
+  <h2>Enrollment form</h2>
+  <form>
+  <label>fullname<label><span style="color:red">*</span><br>
+<input type="text" id="fna" name="fna" required/><br>
+<label>mobileno</label><span style="color:red" maxlength="10"/>*</span><br>
+<input type="text" id="mno" name="mno" required/><br>
+<label>mailid</label><span style="color:red">*</span><br>
+<input type="text" id="mid" name="mid" required/>
+<button>Enroll</button>
+</body>
+</html>
+

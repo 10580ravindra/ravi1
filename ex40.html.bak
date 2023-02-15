@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  
+  <title>ex40</title>
+ </head>
+ <body>
+  <h3>demo on file controle</h3>
+  <form action="upload.jsp" method="post" enctype="multipart/form-data">
+  <input type="file" id="f1" name="f1"/>
+  <br><input type="file" id="f2" name="f2" multiple/>
+  <br><input type="file" id="f3" name="f3" accept=".pdf,.doc"/>
+  </form>
+ </body>
+</html>

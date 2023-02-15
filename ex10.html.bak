@@ -1,0 +1,23 @@
+<!-- example on  a tag  -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Ex10</title>	 
+		<link rel="icon" href="images\at-@-icon.jpg"/>
+	</head>
+  <body>
+	<h3>demo on hyperlinks</h3>
+	<img src="Saved Pictures\cute girl.png"width="100" height="100">
+	<br>
+	<a href="files/Form-49A-TIN-NSDL.pdf"> Click here to Apply</a>
+	<br>
+	<a href="files/OOPs in JavaScript.docx">JS notes</a>
+	<br>
+	<a href="https://www.editplus.com/download.html">download editplus</a>
+	<br>
+	<a href="files\[iSongs.info] 01 - Halamithi Habibo (Telugu).mp3">play audio</a>
+	<br>
+	<a href="files\Zoom Meeting 2022-06-07 18-17-14.mp4">play video</a>
+ 
+  </body>
+</html>

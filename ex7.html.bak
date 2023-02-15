@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Ex7</title>
+		<link rel="icon" href="images\at-@-icon.jpg"/>
+	</head>
+  <body onload="alert('Welcome to my web site')">
+		<h1 onclick="document.write('hello, how are you?')">click here</h1>
+		<h1 align="center">Hypertext Markup Language</h1>
+		<h1 align="right">Cascading Style Sheets</h1>
+		<h1 align="left">JavaScript</h1>
+		<p align="justify">EDITPLUS IS SOLD "AS IS" AND WITHOUT ANY WARRANTY AS TO MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE OR ANY OTHER WARRANTIES EITHER EXPRESSED OR IMPLIED. THE AUTHOR WILL NOT BE LIABLE FOR DATA LOSS, DAMAGES, LOSS OF PROFITS OR ANY OTHER KIND OF LOSS WHILE USING OR MISUSING THIS SOFTWARE.</p>
+
+
+  </body>
+</html>

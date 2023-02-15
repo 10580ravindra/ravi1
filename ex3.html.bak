@@ -1,0 +1,27 @@
+<!--example on label&span tags-->
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <title>ex3</title>
+  <link rel="icon" href="images\preferences-color.png"/>
+ </head>
+ <body>
+ <h1>java is workong</h1>
+ <label style="background:green;color:#999900">enter fullname</label>
+ <br>
+ <label style="background:yellow;color:#ff9933">enter contact number</label>
+ <br>
+ <span style="background:black;color:#ff3333">invalid phnumber</span>
+ <br>
+ <span style="color:green">Hello</span>
+ <br><br>
+ <h2 style="text-color:red;color:blue;">login page</h2>
+ <label>username</label>
+ <span style="color:red;">*</span><br>
+ <input type="name"/><br>
+ <label>password</label>
+ <span style="color:red">*</span><br>
+ <input type="password"/><br>
+ <button>sumit</button>
+ </body>
+ </html>

@@ -1,0 +1,23 @@
+<!--example on body tag-->
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+
+ </head>
+ <body>
+ <audio controls> 
+<source src="C:\html\files\Jalabulajangu.mp3" type="audio/mp3" />
+</audio><br><br>
+
+<video controls> 
+<source src="C:\html\files\the sole of radhesyam.mp4" width="50px" height="50px" type="video/mp4"/>
+</video>
+<video controls> 
+<source src="C:\movies\ninnele.mp4" width="50px" height="50px" type="video/mp4"/>
+</video>
+<video controls> 
+<source src="C:\html\files\Sottala Buggallo.mp4" width="50px" height="50px" type="video/mp4"/>
+</video>
+ 
+ </body>
+</html>

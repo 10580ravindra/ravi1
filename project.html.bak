@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+ <style>
+ form{
+ background:cyan;
+ color:white;
+ }
+ div{
+ padding:30px 50px;
+ }
+ h4:over{
+ background-color:red;
+ }
+ first-letter{
+
+ height:20px;}
+ header{
+ background:#666666;
+}fieldset{
+background:white;}
+ </style>
+  
+  <title>SRI PRATIBHA JR.COLLEGE</title>
+  <link rel="icon" href="images\png.png"/>
+ </head>
+ <body onload="alert('Welcome to my web site')"> 
+		<fieldset><h1 onclick="document.write('hello, how are you?')">click here</h1>
+ <header ><img src="images\pratibha_logo2.png"width="300"height="200"align="center"  /></header>
+<h2 style="background:red" align="center">info@sripratibha.com &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +91 9133399691/2/3  &nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Mon-sun:09:00-16:00</h2>
+  <div align="center"></div>
+  <div border="10px">
+			<h3 align="center"  style="font-size:50px ;color:blue" >Our Institutions Offered<h3>
+			<p align="center"style="font-size:30px" >
+			School <span style="color:red">>></span> Junior College <span style="color:red">>></span>  Degree & PG College <span style="color:red">>></span>  IIT Academy <span style="color:red">>></span>  Medical Academy.
+			</p>
+			<h3 align="center" style="font-size:50px;color:blue">Our Branches at</h3>	
+			<p align="center"style="font-size:30px"><span style="color:red"><img src="C:\html\images\location.jpg"width="20px" height="20px"/></span>Ongole <span style="color:red"><img src="C:\html\images\location.jpg"width="20px" height="20px"/></span> Pernamitta<span style="color:red"><img src="C:\html\images\location.jpg"width="20px" height="20px"/></span>  Kandukur</p><br>
+			</div>
+			<marquee behavior="scroll" direction="left" time="0.05"style="font-size:50px"><h1 style="color:red"><img align="center" src="images\png.png"/>
+			<p style="font-size=50px"></h1></marquee>
+			<!--<marquee behavior="scroll" direction="down"style="font-size:50px"><h3 align="center"style="color:#66ff00">SRI PRATIBHA JR.COLLEGE</h3></marquee>-->
+
+			
+			<marquee behavior="scroll" direction="right" time="1"style="font-size:50px"><h2 style="background:cyan;color:red">SRI PRATIBHA JR.COLLEGE</h2></marquee>
+
+		
+			  
+			    <img src="images\pratibha2.jpg" id="myImage" width="700" height="450">
+    <input type="button" onclick="changeImage()"width="700px"height="400px" value="Change" />
+   
+
+    <script>
+        function changeImage() {
+            var image = document.getElementById('myImage');
+            if (image.src.match("images\pratibha2.jpg")) {
+                image.src = "images\pratibha2.jpg";
+            }
+            else {
+                image.src = "images\pratibha2.jpg";
+            }
+        }
+    </script>
+
+			<!--<h3 style="background:cyan"style="background-size:300PX" gap="20px" style="font-size:50px">HOME--> <form action="/action_page.php">
+			<div>
+  <label for="cars"STYLE="color:blue;font-size:22px">&nbsp;&nbsp;Home</label>
+  <select id="cars" name="cars">
+  <option ></option>
+   
+  </select>
+  
+
+  <label for="cars"STYLE="COLOR:BLUE;font-size:22px">ABOUT US</label>
+  <select id="loc" name="loc">
+<option ></option>
+ <option value="kjlfbh">our institutions</option>
+    <option value="saab">our Ceo</option>
+    <option value="fiat">Our chairman</option>
+    <option value="audi">Our Manager</option>
+	<option value="hfj">our faculty</option>
+    
+    
+  </select>
+ 
+
+  <label for="cars"STYLE="COLOR:BLUE;font-size:22px">OTHER INSTRUCTIONS</label>
+  <select id="cars" name="cars">
+  <option></option>
+     <option value="volvo">ONGOLE</option>
+    <option value="saab">PERNAMITTA</option>
+    <option value="fiat">KANDHUKURU</option>
+  </select>
+  
+
+
+
+  <label for="cars" STYLE="COLOR:BLUE;font-size:22px"/>COURSES</label>
+  <select id="cars" name="cars">
+  <option></option>
+  <option value="volvo">MPC</option>
+    <option value="saab">CEC</option>
+    <option value="fiat">BIPC</option>
+    <option value="audi">HEC</option>
+    
+  </select>
+  
+
+  <label for="cars"STYLE="COLOR:BLUE;font-size:22px">CONTACTS</label>
+  <select id="cars" name="cars">
+  <option></option>
+   <option value="volvo">6304524487</option>
+    <option value="saab">8801256272</option>
+    <option value="fiat">8142665329</option>
+    <option value="audi">7995587352</option>
+     
+  </select>
+  
+
+  <label for="cars"STYLE="COLOR:BLUE;font-size:22px">GALLERY</label>
+  <select id="cars" name="cars">
+  <option></option>
+    
+  </select>
+  
+</form></div><br>
+			
+			<h1 style="color:red" size="30px">Instructions@Ongole Campus</h1>
+			<h1 style="background:red;color:white">Sri Pratibha Jr.College</h1>
+			<h1 style="background:red;color:white">Sri Pratibha Degree&PG College</h1><br><br>
+			<img src="images\png.png"/>
+			<fieldset style="background:black"/><marquee behavior="scroll" direction="left" time="0.05"style="font-size:50px"><h1 style="color:#cccc33"/><div style="font-size:30px" />Sri Pratibha Educational Institution was established in 1983 and is run by Sree Veera Brahma Deva Educational Society Educational Trust, founded and established by Mr. Nalluri Venkateswarlu, with a personal commitment towards providing best education to deserving students and he became a source of inspiration and guiding spirit to the students' fraternity.</div></marquee></fieldset><br><br>
+		<div style="display:flex; flex-direction:row; flex-wrap:nowrap; gap:30px;background:black;color:white" align ="center">
+		<div>
+		<img align="center" src="C:\html\images\srp1.png" ><br><br>Sri Pratibha Educational Institution was established<br> in 1983 and is run by Sree Veera Brahma Deva Educational Society Educational Trust, founded and established by Mr. Nalluri Venkateswarlu,<br> with a personal commitment towards providing best education to deserving students<br> and he became a source of inspiration and <br>guiding spirit to the students' fraternity.
+		</div>
+				<div style="text-align:justify">
+				<h3 style="font-size:20px" ><h1 style="color:red">USEFULLLINKS<h1></h3>
+				<ul style="font-size:20px">
+				<a href="pratibha.html">
+				<h3 style="backcolor:Green;color:blue">Aboutinstitutions</h3></a>
+				<h3 style="backcolor:red;color:blue">courses</h3>
+				<a href="gallery.html"><h3 style="backcolor:red;color:blue">Gallery</h3></a>
+				<h3 style="backcolor:red;color:blue">Ongolecampus</h3>
+				<h3 style="backcolor:red;color:blue">Pernamitta</h3>
+				<h3 style="backcolor:red;color:blue">Kandhukurucampus</h3></div>
+<div style="text-align:justify">
+<ul>
+<div style="color:red;font-size:30px">GetInTouch</div>
+<h4 style="background:black;color:white"><img src="C:\html\images\images.png"width="30px"height="30px"/>&nbsp;&nbsp;&nbsp;&nbsp;Pernamitta,Ongole,Kandukur</h4><hr>
+<h4 style="background:black;color:white"><img src="C:\html\images\cell.jpg"width="30px"height="30px"/>9133399691,6301422230,8500301111</h4><hr>
+<h4 style="background:black;color:white"><img src="C:\html\images\msg.png"width="30px"height="30px"/>&nbsp;&nbsp;&nbsp;&nbsp;info@sripratibha.com</h4><hr>
+<h4 style="background:black;color:white"><img src="C:\html\images\time.png"width="30px"height="30px"/>&nbsp;&nbsp;&nbsp;&nbsp;Mon - Sun : 09:00 - 18:00</h4>
+</ul>
+</div>
+				</div>
+				</div>
+				</form></fieldset>
+ </body>
+</html>
