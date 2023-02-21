@@ -1,3 +1,8 @@
+  --purchase indent query 2nd screen--
+  
+  
+  
+  
   SELECT
     wvf_getmednmstd(medicinename)                                     medicion_name,
      getsubdeptnm(indentfromsubdept)indentfromsubdept,
