@@ -23,3 +23,19 @@ WHERE
     AND entrydate <= TO_DATE('20/02/2023', 'dd/mm/yyyy')
     AND indenttosubdept = 'SD000126'
     AND indentno in(1482,1468,1521,1407,1511)
+MERGE COMMAND 
+-------------
+SYNTAX:-MERGE INTO DESTINATION TABLE
+USING SOURCE TABLE ON (CONDION)
+WHEN MATHED THEN 
+STATEMENT
+WHEN NOT MATCHED THEN
+STATEMENT;
+
+EX:-
+merge into emp2 e1
+using emp e on (e1.empid=e.empid)
+when matched then
+update set e1.entrytime=e.entrytime
+when not matched then
+insert values(e.empid,e.empnm,e.salary,e.deptid,e.deptnm,e.entrydate,e.entrytime);
