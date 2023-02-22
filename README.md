@@ -22,8 +22,8 @@ WHERE
     AND entrydate >= TO_DATE('01/02/2023', 'dd/mm/yyyy')
     AND entrydate <= TO_DATE('20/02/2023', 'dd/mm/yyyy')
     AND indenttosubdept = 'SD000126'
-    AND indentno in(1482,1468,1521,1407,1511)
-MERGE COMMAND 
+    AND indentno in(1482,1468,1521,1407,1511);
+MERGE COMMAND 📧
 -------------
 SYNTAX:-MERGE INTO DESTINATION TABLE
 USING SOURCE TABLE ON (CONDION)
