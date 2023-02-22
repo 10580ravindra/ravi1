@@ -43,7 +43,7 @@ when not matched then
 insert values(e.empid,e.empnm,e.salary,e.deptid,e.deptnm,e.entrydate,e.entrytime);
 
 
-PL/SQL:-
+PL/SQL 🚱
 --------
 EX1:-INPUT EMPNO AND GET EMPNAME,SALRY:-
 DECLARE 
