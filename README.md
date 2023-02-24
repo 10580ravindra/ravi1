@@ -187,9 +187,151 @@ EX5:-WAP TO INPUT EMPNO AND INCREMENT EMPLOYEE SALRY AS FOLLOWS
    END;
    /
    
+  LOOPS:-
+  ----------
+  =>wap to print nos from 1 to 20?
   
+  DECLARE
+  X NUMBER(3):=1;
+  BEGIN
+  LOOP DBMS_OUTPUT.PUT_LINE(X);
+  X:=X+1;
+  EXIT WHEN X>20;
+  ENDLOOP;
+  END;
    
+ USING WHILE LOOP:-
+ ------------------
+ DECLARE
+  X NUMBER(3):=1;
+  BEGIN
+  WHILE(X<=20)
+  LOOP DBMS_OUTPUT.PUT_LINE(X);
+  X:=X+1;
+  END LOOP;
+  END;
+  USING FOR LOOP:=
+  ------------------
+  DECLARE
+  X NUMBER(3):=1;
+  BEGIN
+ FOR X IN 1..20
+  LOOP DBMS_OUTPUT.PUT_LINE(X);
+  END LOOP;
+  END;
+ =>PRINT 2023 CALENDER DATE AND DAY
+ DECLARE 
+ D1 DATE;
+ D2 DATE;
+ BEGIN
+ D1:='1-JAN-2023';
+ D2:='31-DEC-2023';
+ WHILE(D1<D2)
+ DBMS_OUTPUT.PUT_LINE(D1||' '||TO_CHAR(D1,'DAY'));
+ D1:=D1+1;
+ END LOOP;
+ END;
+ /
  
-    
+ =>PRINT SUNDAYS 2023
+ 
+ DECLARE 
+ D1 DATE;
+ D2 DATE;
+ BEGIN
+ D1:='01-JAN-23';
+ D2:='31-DEC-23';
+ D1:=NEXT_DAY(D1-1,'SUNDAY'); 
+ WHILE(D1<=D2)
+   LOOP
+ DBMS_OUTPUT.PUT_LINE(D1||' '||TO_CHAR(D1,'DAY'));
+ D1:=D1+7;
+ END LOOP;
+ END;
+ /
+   CURSORS 🚱
+   ----------
+   DECLERATION CURSOR:-
+   EX:- cursor <name> is select statement;
+   cursor c1 select * from emp;
+   Opening Cursor:=
+   ------------------
+   open <cursor-name>
+   open c1;
+   1.select stmts submitted to oracle
+   2.oracle executes the query and data returned by query is copied to instance variable
+   3.cursor c1 points the memory.
+   
+   Fetching records from cursor:-
+   ---------------------------------
+   =>"FETCH" stmts is used to featch records from cursor.
+   EX:-FETCH c1 into a,b,c......;
+   =>a fetch statms fetches one row at atime .So we write fetch inside the loop only.
+   cursor attributes:-
+   -------------------
+   1 %found:-
+   TRUE =>if fetch successful
+   FALSE => if fetch unsucessful
+   2 %notfound:-
+   True => if fetch uncessful
+   False => if fetch unsuccessful
+   3 %rowcount:-
+   => returns no of rows fetched successfully.
+   4 %isopen:-
+   TRUE => if cursor is opened
+   FALSE => if cursor is not opened
    
    
+   => wap to print all the employee names and salaries ?
+   
+   DECLARE
+   cursor c1 is select emp_name,emp_no,salary from emp;
+   v_ename emp.emp_name%Type;
+   v_eno emp.emp_no%Type;
+   v_sal emp.salary%Type;
+   BEGIN 
+  open c1;
+  LOOP
+  fetch c1 into v_ename,v_eno,v_sal;
+  exit when c1%notfound;
+  dbms_output.put_line(v_ename||' '||v_eno||' '||v_sal);
+  END LOOP;
+  close c1;
+  end;
+   
+  FOR LOOP CURSOR/CURSOR FOR LOOP:-
+  -----------------------------------
+   =>Adv of for loop cursor is oening cursor,fetching records from cursor and closing cursor is not required and all these operations performed implicitily. 
+   
+   => for loop executes no of times  depends on no of rows in cursor
+   => every time forloop executes a record is fetched from cursor and assigned to variable "r".
+   => loop variable "r" is also declared implicitly as rowtype.
+   
+   
+   DECLARE
+   cursor c1 is select emp_name,salary from emp;
+   begin
+  for r in c1
+  loop
+  dbms_output.put_line(r.emp_name||' '||r.salary);
+  end loop;
+  end;
+  
+  => wap to calculate all the student total,avg,result and insert into result table ?
+  
+  DECLARE
+  cursor c1 is select * from student;
+  r result%rowtype;
+  begin
+  for s in c1
+  loop
+  r.total:=s.s1+s.s2+s.s3;
+  r.avg:=r.total/3;
+ r.result:='pass'
+ else
+ r.result:='fail';
+ end if;
+ insert into result values(s.sno,r.total,r.avg,r.result);
+ end loop;
+ commit;
+ end;
