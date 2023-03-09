@@ -24,6 +24,26 @@ WHERE
     AND indenttosubdept = 'SD000126'
     AND indentno in(1482,1468,1521,1407,1511);
     
+ opd consultation area wise query:-
+ --------------------------------------
+    
+    SELECT DISTINCT
+    h.name,opmrno,getservicename(serviceid)service_name,
+   (select areanm from admin.citys c where c.areaid=h.cityid)area,
+    wvf_getdocnm(d.docid) doctorname,
+    billdt consul_date,h.address
+FROM
+    ip.availserviceshdr h,
+    ip.availservicesdtl d
+WHERE
+        h.billid = d.billid 
+        AND STFLG=1
+    AND h.locid = 'Loc00001'
+    AND billdt >= TO_DATE('01/08/2022', 'dd/mm/yyyy')
+    AND billdt <= TO_DATE('28/02/2023', 'dd/mm/yyyy')
+    and nvl(opflg,0)=1
+     ORDER BY billdt desc ;
+    
     
 MERGE COMMAND 📧
 -------------
