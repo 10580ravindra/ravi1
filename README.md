@@ -1,6 +1,6 @@
   --purchase indent query 2nd screen--
-  
-  
+  opd billing 1
+   union all SELECT  DISTINCT 0 selServiceType_id,nvl(d.doctor_name,r.docid)  txtUnit_or_Doctor_searchid_id,(select doctornm from admin.doctorinfo where doctorinfo.docid=nvl(d.doctor_name,r.docid)) txtUnit_or_Doctor_searchid,case when f.serviceid= 'AS006217' then to_char(WVF_OP_PROCEDURE_CON_RATE( nvl(f.cons,0),'$txtOrgDocFee.value','0',nvl(d.doctor_name,r.docid) ,  '$txtsocid.value' ,'$txtMR_No_searchid.value' ,'$selPatType.id',$selTiming.id ,'$txtdisflg.value','$txtSelect_Source_searchid.id')) else (nvl(admin.WVF_OP_GETSERVICERATESOCIVYStd( f.serviceid,nvl(admin.WVF_OP_GETSOCIDIVYStd( '$txtSelect_Source_searchid.id','$loc','$selType.id',0),'$soc'), '$txtPaytype.value' ),0)) end txtTRate,f.serviceid txtService_name_searchid_id,  servicenm txtService_name_searchid , f.scode txtService_code ,  '0' txtGridDisc ,  d.slno,1 txtQty,D.PRESCID txtbUBBLEPRESCID,nvl(f.cons,0) txtSTflg,nvl(f.docflg,0) txtDrflg , nvl(f.fixedrateflg,0) txtsrfixedvar FROM OTS1.NURSINGHDR_OPD r,OTS1.NURSINGdtl_OPD  d,  IP.SERVICESVF f WHERE r.prescid =d.prescid   AND d.complaintid =f.SERVICEID   AND NVL(d.ISBILLING,0)        =0   AND r.PRESCDaTe =to_date(SYSDATE)   AND r.mrno                    ='$txtMR_No_searchid.value' 
   
   
   SELECT
