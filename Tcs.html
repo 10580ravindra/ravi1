@@ -2,24 +2,34 @@
 <html lang="en">
  <head>
   <title>Tcs Enrollment form</title>
-  
- 
   <style>
   div{
   width:600px;
-  background-color:#ffcccc;
+  background-color:lightgreen;
   margin:auto;
   border-radius:20px;
   padding:20px;
-  background:url("C:\html\images/lion.jpg")
+  background:src("C:\html\images\lion.jpg")
  }
   </style>
  </head>
+<script>  
+function matchPassword() {  
+  var pw1 = document.getElementById("pwd1");  
+  var pw2 = document.getElementById("pwd2");  
+  if(pw1 != pw2)  
+  {   
+    alert("Passwords did not match");  
+  } else {  
+    alert("Password created successfully");  
+  }  
+}  
+</script>  
  <body>
   <div>
   <form id="frm" action="register.jsp">
-<h3 style="background:#f3f3f3;color:green"><img src="images\home.png"width="20px" height="20px" />TCS NextStep</h3>
-  <h5 align="right"><button>login</button></h5>
+<h3 style="background:white;color:green"><img src="\home\erp3\Pictures/cap.jpg" width="20px" height="20px" />TCS NextStep</h3>
+  <h5 align="right"><button><a login</button></h5>
   <label>Name<span style="color:red">*</span></label><br>
   <select id="name" name="name"><br>
   <option value="">Title</option>
@@ -98,9 +108,10 @@
 	 <option value="volvo">Noida</option>
 	 </select><br><br>
 	 <label>Enter Password<span style="color:red">*</span><span style="color:#ff0033">as per Tcs PasswordPolocy</span></label><br>
-	 <input type="password" id="tx" name="tx" required/><br><br>
+	 <input type="password" id="tx" name="pwd1" required/><br><br>
 	  <label>Re-Enter Password<span style="color:red">*</span></label><br>
-	 <input type="password" id="tx" name="tx" required/><br><br>
+	 <input type="password" id="tx" name="pwd2" required/><br><br>
+
 	  <label>Select Security Question<span style="color:red">*</span></label><br>
 	 <select id="sq" name="sq"><br>
   <option value="">select</option>
@@ -113,7 +124,9 @@
 	</select><br><br>
 	<label>Answer to security Questions<span style="color:red">*</span></label><br>
 	<input type="text" id="tx" name="tx" required/><br><br>
-	<button name="sb">submit</button>&nbsp;<input type="reset" value="clear all"/> 
+<input type="reset" value="clear all"/> 
+<!?Click to validate confirm password -->
+<button type = "submit" onclick="matchPassword()">Submit</button>
  </form>
 </div>
  </html>
