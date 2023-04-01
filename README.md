@@ -4,7 +4,30 @@
 SELECT   NVL(E.EMPNM,D.USERNM)NAME ,D.EMPID,(Select subDeptNm  from payroll.subDepts where sDeptID=E.SDEPTID) DEPTNM,
 D.USERNM ,D.USERID,D.ADDRESS,D.PHONE,D.PAYROLLEMPID FROM ADMIN.USERS D ,PAYROLL.EMPLOYEEINFO E WHERE D.ACTIVE=0 AND E.EMPID(+)=D.PAYROLLEMPID ORDER BY NAME;
 
+payslip:-
 
+--------
+select DISTINCT * from ( (SELECT DISTINCT
+    d.leaveopenings   open_balance,
+    d.leaveavaild     leaves_availed,
+    d.leavesavailable leaves_available,
+    d.leavecode
+FROM
+    payroll.empsalhdr_month h,
+    payroll.empleave_dtl    d
+WHERE
+        h.salid = d.fkid
+    AND leavecode IN (
+        SELECT
+            leavecode
+        FROM
+            payroll.empleave_dtl
+    ))
+unpivot (no_of_leaves FOR LEAVE_TYPE IN(open_balance,leaves_availed,leaves_available))PIVOT (
+    SUM ( no_of_leaves )
+    FOR leavecode
+    IN ( 'CL',  'SL', 'EL', 'CO' )
+))order by LEAVE_TYPE desc;
 
 --purchase indent query 2nd screen--
   opd billing 1
