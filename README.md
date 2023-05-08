@@ -1,4 +1,13 @@
-  ACTIVE EMPLOYEE LIST:-
+
+
+ER REGISTRATION AND OP PROCEDURE BILLING DAILY DATA
+--------------------------------------------------------
+select * from ip.erinitial where entrydate in('06/05/2023','07/05/2023') and locid='Loc00001';
+
+select * from OTS1.nursinghdr_opd h,OTS1.nursingdtl_opd where h.prescid=d.prescid and locid='Loc00001'
+
+
+ACTIVE EMPLOYEE LIST:-
   ---------------------
 
 SELECT   NVL(E.EMPNM,D.USERNM)NAME ,D.EMPID,(Select subDeptNm  from payroll.subDepts where sDeptID=E.SDEPTID) DEPTNM,
