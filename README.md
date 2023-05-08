@@ -1,5 +1,11 @@
+TOMORROW UPDATE QUERIES
+--------------------------
 
+SELECT moneyreceipt.NAME,moneyreceipt.OPREGNO ,RECEIPTNO,admin.getagefromdobmoney(moneyreceipt.moneyreceiptid) AGE,IPINFO.IPNO FROM IP.moneyreceipt ,
+IP.IPINFO WHERE ipinfo.PATID (+)= MONEYRECEIPT.PATID AND IPINFO.IPNO='1720284' ;
 
+SELECT H.NAME,H.IPNO,H.casesheetnumber, nvl((H.ageyrs|| ' Y '|| H.agemonth|| ' M '|| H.ageday|| ' D '), '') age FROM IP.IPINFO H, ip.dischargetemplate   d         where                                   
+    H.patid = d.patid AND H.IPNO='1720284';
 ER REGISTRATION AND OP PROCEDURE BILLING DAILY DATA
 --------------------------------------------------------
 select * from ip.erinitial where entrydate in('06/05/2023','07/05/2023') and locid='Loc00001';
