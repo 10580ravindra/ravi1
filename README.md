@@ -1,3 +1,87 @@
+HTML
+----------------
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<style>
+		a{
+			text-decoration: none;
+			color: green;
+			font-size: 20px;
+			padding: 8px;
+		}
+		a:hover{
+			color: blue;
+		}
+	         h1{
+		text-align: center;
+		}
+	</style>
+</head>
+ <--<frameset cols="50%,50%">  
+    <frame src="https://www.javatpoint.com/html-table">  
+    <frame src="https://www.javatpoint.com/css-table">
+    <noframes>Sorry! Your browser does not support frames. </noframes>    
+   </frameset> -->
+<body>
+
+<h1 ALIGN="CENTER">WELCOME TO ZOI HOSPITALS</h1>
+<marquee DIRECTION="RIGHT" BEHAVIOR="SCROLL">This is an example of html marquee </marquee> 
+<marquee width="100%" behavior="alternate" bgcolor="pink"> This is an example of html marquee </MARQUEE>
+<p>Display a gauge:</p>  
+<meter value="50" min="1" max="100">30 out of 100</meter><br>  
+<meter value="0.9">80%</meter> 
+<h3>Navigate Buttons</h3>
+<nav>
+ 	<a href="#">Home</a> |
+ 	<a href="#">Courses</a> |
+ 	<a href="#">About-us</a> |
+ 	<a href="#">Contact-us</a> |
+ </nav>
+ 
+ <b>Button(Script)
+ <button name="button" value="OK" type="button" onclick="hello()">Click Here</button>  
+<script>  
+function hello(){  
+alert("hello javatpoint user");  
+}  
+</script>  
+<svg width="100" height="100">  
+   <circle cx="50" cy="50" r="40" stroke="yellow" stroke-width="4" fill="red" />  
+  </svg>   
+  <svg height="210" width="500">  
+  <polygon points="100,10 40,198 190,78 10,78 160,198"  
+  style="fill:red;stroke:yellow;stroke-width:5;fill-rule:nonzero;" />  
+</svg>   
+<svg width="200" height="100">  
+   <rect width="50px" height="30px" stroke="yellow" stroke-width="4" fill="red" />  
+  <div class="MagicScroll" data-options="items: [[200,1],[400,2],[600,4]]">
+    <img src="example1.jpg">
+    <img src="example2.jpg">
+    ...
+</div>
+<div class="MagicScroll" data-options="orientation: vertical; height: 240;">
+    <img src="example1.jpg">
+    <img src="example2.jpg">
+    ...
+</div>
+
+<div class="MagicScroll" data-options="orientation: vertical; items: 3;">
+    <img src="example1.jpg">
+    <img src="example2.jpg">
+    ...
+</div>
+    ...
+</div>
+<div class="MagicScroll" data-options="autoplay: 1000; step: 1; mode: carousel; height: 275;">
+    <img src="example1.jpg">
+    <img src="example2.jpg">
+    ...
+</div>
+</body>
+</html>
+
 TOMORROW UPDATE QUERIES
 --------------------------
 
