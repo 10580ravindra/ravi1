@@ -1,4 +1,27 @@
-HTML
+purchases sales report query
+-------------------------------
+SELECT
+    invno  invoice_no,
+    invdt1 date1,
+    suplid agent_name,
+    medid item_name,
+    quantity bill_quantity,
+    free offer_qty,
+    d.feededrate rate,
+    feededmrp mrp,
+    amount amount,
+    d.tax tax,
+    totalamt total_amount,
+    batchno batch_no,
+    d.expdt expiry_date,
+    purchaseno grnno 
+FROM
+    inventory.receiptmedmast h,
+    inventory.receiptmeddtls d
+WHERE
+    h.rcid = d.rcid
+    and h.rcdt>=to_date('01/02/2023','dd/mm/yyyy')and h.rcdt<=to_date('30/05/2023','dd/mm/yyyy');
+    HTML
 ----------------
 <!DOCTYPE html>
 <html>
