@@ -1,11 +1,6 @@
 nursing tv patent request grid qry
 ......................................
 select  m.servicerequestnm Requested_Service,admin.wvf_getusernm(d.userid)  Room_No, (case when d.accepted = 1 and d.status = 0 then 'Accepted'  when d.accepted = 1 and d.status = 1 then 'Completed' else 'Pending' end)  Status,to_char(d.savedate,'dd/mm/yyyy') Requested_Date, to_char(d.savetime,'HH:MI:SS AM') Requested_Time, d.fkid||d.serreqid txtSerreqid  from admin.patserreqtemp d ,admin.patientservicerequestmaster m where m.pkid = d.serreqid  and d.savedate >= to_Date('$fd','dd/mm/yyyy')  and d.savedate <= to_Date('$td','dd/mm/yyyy')   and (case when d.accepted = 1 and d.status = 0 then 'Accepted' when d.accepted = 1 and d.status = 1 then 'Completed' else 'Pending' end) = 'Pending'  and d.REQUESTTYPE = '3' order by d.savedate desc,d.savetime desc 
-
-
-
-
-
 purchases sales report query
 -------------------------------
 SELECT
