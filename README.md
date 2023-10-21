@@ -1,3 +1,57 @@
+consultation not done
+===========================
+SELECT
+    (dischargedt - regdt)+1 total_days,
+    casesheetnumber,
+    regdt,
+    (
+       select count(prescdate) from( SELECT
+        distinct  h.PRESCDATE
+        FROM
+            ots1.dprescmedhdr h,
+            ots1.dprescmeddtl d
+        WHERE
+                h.prescid = d.prescid
+            AND ippatid_d = ipinfo.patid)
+           
+    ) prec_days, (
+       select prescdate from( SELECT
+        distinct  h.PRESCDATE
+        FROM
+            ots1.dprescmedhdr h,
+            ots1.dprescmeddtl d
+        WHERE
+                h.prescid = d.prescid
+            AND ippatid_d = ipinfo.patid   and rownum=1)
+         
+    ) prescdt,
+    dischargedt,patid,case when (dischargedt - regdt)+1 != (
+       select count(prescdate) from( SELECT
+        distinct  h.PRESCDATE
+        FROM
+            ots1.dprescmedhdr h,
+            ots1.dprescmeddtl d
+        WHERE
+                h.prescid = d.prescid
+            AND ippatid_d = ipinfo.patid)
+           
+    ) then 'prescription not given'||' '||to_char(to_char((dischargedt - regdt)+1)-to_char((
+       select count(prescdate) from( SELECT
+        distinct  h.PRESCDATE
+        FROM
+            ots1.dprescmedhdr h,
+            ots1.dprescmeddtl d
+        WHERE
+                h.prescid = d.prescid
+            AND ippatid_d = ipinfo.patid)
+           
+    )))||' '||'days' else 'prescription given'||' '||to_char((dischargedt - regdt)+1)||' '||'days' end type
+FROM
+    ip.ipinfo
+    where regdt>=to_date('01/07/2023','dd/mm/yyyy')and regdt<=to_date('30/07/2023','dd/mm/yyyy') and locid='L0000002'
+
+-------------------------------------------------------------------------------------------------------------------------
+
 SELECT EDATE-COUNT(VDATE)FROM (SELECT
 DISTINCT H.VDATE, CAST(TO_CHAR(LAST_DAY(H.VDATE), 'DD') AS INT)EDATE,VOUCHERTYPEID,SUBCOMPANYID,D.LOCID
 FROM
