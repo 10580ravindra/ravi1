@@ -1,3 +1,17 @@
+revenue code for accounts
+==========================
+select TYPE ,BTYPE ,MD ,MODULE ,BILLDT ,BILLID ,BILLNO ,BILLNO2 ,LOCBILLNO ,ACTBILLNO ,NAME ,
+LOCID ,REFERTYPE ,BILLUSERID ,nvl(nvl((
+                SELECT
+                   pamtmode
+                FROM
+                   ip.pmtmode
+                WHERE
+                       fkid = substr(tcrvhdr0111202330112023.billid,2)
+                    AND ROWNUM = 1
+            ),(select  distinct WVF_GETPAMTMODE(paymentmode) from IP.moneyreceipt where patid=billid and rownum=1)),( wvf_getpmtmode_sourceid(billid)))pmtmode,TOTAL ,DISCOUNT ,TAXAMT ,NET ,ADVADJ ,TDS ,DISALLOWAMT ,
+WOAMT ,ORGDISCAMT ,SERVICETAX ,PAID ,DUE ,REFUNDABLE ,PAYABLEBYPAT ,TPAPAYABLE ,BILLSCROLLNO ,
+BILLID2 ,TOTALGSTAMT ,REGID ,REGNO ,IDENTIFY  from admin.tcrvhdr0111202330112023
 consultation not done
 ===========================
 SELECT
