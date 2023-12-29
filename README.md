@@ -622,3 +622,20 @@ EX5:-WAP TO INPUT EMPNO AND INCREMENT EMPLOYEE SALRY AS FOLLOWS
  end loop;
  commit;
  end;
+
+
+
+ important notes
+ =================
+ 1.how to change data type with data in table
+ A. 1).first check table constraints 
+    2).create table with reference of originol table 
+    3).truncate originol table
+    4).alter data type for that field in originol table 
+    5).insert data into createde table to originol table 
+    6).enable constraints 
+2.How to disable constraint 
+A.alter table table_name disable constraint constr_nm
+2.How to enable constraint 
+A.alter table table_name enable constraint constr_nm 
+
