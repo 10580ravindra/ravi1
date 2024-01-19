@@ -638,4 +638,11 @@ EX5:-WAP TO INPUT EMPNO AND INCREMENT EMPLOYEE SALRY AS FOLLOWS
 A.alter table table_name disable constraint constr_nm
 2.How to enable constraint 
 A.alter table table_name enable constraint constr_nm 
+3.what is simple view and complex view.
+A.simple view is accessing with single table.and it is not allowed dml operations and function like group by,count,having.
+  complex views are accessing with multiple table and its allowed dml operations and aggregate functions.
+4.what is the diff between view meterilized view.
+A.The main difference between views and materialized views is that views are dynamic and materialized views are static. This means that views always reflect the latest data from the underlying tables or views, while materialized views only show the data from the last refresh.
+5.diff between rownum and rowid.
+A.The actual difference between rowid and rownum is, that rowid is a permanent unique identifier for that row. However, the rownum is temporary. If you change your query, the rownum number will refer to another row, the rowid won't. So the ROWNUM is a consecutive number which applicable for a specific SQL statement only.
 
