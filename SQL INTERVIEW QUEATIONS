@@ -24,4 +24,9 @@ A.1.create materialized view <viewnm>
 7.what is the syntax of materialized view log.
 A.create materialized view log on <table name>
 Note:-we need primary key on base table for creating log on meterailzed view 
-
+8.what is normalization .
+A.Normalization is the process to eliminate data redundancy and enhance data integrity in the table.
+Normalization also helps to organize the data in the database. It is a multi-step process that sets the 
+data into tabular form and removes the duplicated data from the relational tables.
+9.what is Denormalization .
+A.Denormalization is the process of adding precomputed redundant data to an otherwise normalized relational database to improve read performance of the database. Normalizing a database involves removing redundancy so only a single copy exists of each piece of information.
