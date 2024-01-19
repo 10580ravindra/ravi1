@@ -30,3 +30,22 @@ Normalization also helps to organize the data in the database. It is a multi-ste
 data into tabular form and removes the duplicated data from the relational tables.
 9.what is Denormalization .
 A.Denormalization is the process of adding precomputed redundant data to an otherwise normalized relational database to improve read performance of the database. Normalizing a database involves removing redundancy so only a single copy exists of each piece of information.
+10.hoe many ways we can write materialized views;
+A.create MATERIALIZED view mvravi as select * from emp;
+select * from mvravi;
+create MATERIALIZED view mvravi1 build IMMEDIATE as select * from emp;
+select * from mvravi1;
+exec dbms_mview.refresh('mvravi6');
+create MATERIALIZED view mvravi2 build DEFERRED as select * from emp;
+select * from mvravi2;
+create MATERIALIZED view mvravi3 refresh on demand as select * from emp;
+select * from mvravi3;
+create MATERIALIZED view mvravi4 refresh on commit as select * from emp;
+select * from mvravi4;
+create MATERIALIZED view mvravi5 REFRESH FAST ON demand as select * from emp;
+select * from mvravi5;
+create MATERIALIZED view mvravi6 REFRESH complete  as select * from emp;
+select * from mvravi6;
+create MATERIALIZED view mvravi7 REFRESH fast  as select * from emp;
+select * from mvravi7;
+11.
