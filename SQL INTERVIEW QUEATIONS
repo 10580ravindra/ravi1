@@ -48,4 +48,51 @@ create MATERIALIZED view mvravi6 REFRESH complete  as select * from emp;
 select * from mvravi6;
 create MATERIALIZED view mvravi7 REFRESH fast  as select * from emp;
 select * from mvravi7;
-11.
+11.cursor example.
+A.declare v_name varchar2(20);cursor c1(v_no number) is select empnm from emp where salary >v_no;
+begin
+open c1(100000);
+loop fetch c1 into v_name;
+dbms_output.put_line(v_name);
+exit when c1%notfound;end loop;
+close c1;end;
+12.what is triggers and types of triggers.
+A.Types of Triggers
+      1.DML Triggers
+      2.DDL Triggers
+      3.system Event
+      4.compund Triggers
+      5.instead of Triggers
+13.Example of Trigger.
+A.1).CREATE OR REPLACE TRIGGER <TRNM> BEFORE INSERT OR DELETE OR UPDATE ON emp
+FOR EACH ROW
+ENABLE 
+DECLARE 
+V_USER DATATYPE;
+BEGIN
+SELECT USER INTO V_USER FROM DUAL;
+IF INSERTING THEN
+DBMS_OUTPUT.PUT_LINE('ONE RECORD IS INSERTED BY',V_USER);
+ELSEIF DELETING THEN
+DBMS_OUTPUT.PUT_LINE('ONE RECORD IS DELETED BY',V_USER);
+ELSEIF UPADTING THEN
+DBMS_OUTPUT.PUT_LINE('ONE RECORD IS UPADTED BY',V_USER);ENDIF ;
+END;
+2).CREATE OR REPLACE TRIGGER <TRNM> BEFORE INSERT OR DELETE OR UPDATE ON TAB_NM
+FOR EACH ROW
+ENABLE 
+DECLARE 
+V_USER DATATYPE;
+v_DATE DATATYPE;
+BEGIN
+SELECT USER ,TO_DATE(SYSDATE,'DD/MM/YYYY')INTO V_USER,v_DATE FROM DUAL;
+IF INSERTING THEN
+INSERT INTO EMP(EMP_NO,DEPTID,USER_NM,OPERATION)
+VALUES(:NEW.Sh_emp_no,null,v_user,v_DAte,'insert');
+ELSEIF DELETING THEN
+INSERT INTO EMP(EMP_NO,DEPTID,USER_NM,OPERATION)
+VALUES(null,:NEW:sh_DEPTID,v_user,v_DAte,'delete');
+ELSEIF UPADTING THEN
+INSERT INTO EMP(EMP_NO,DEPTID,USER_NM,OPERATION)
+VALUES(:OLD.Sh_emp_no,OLD.sh_deptid,v_user,v_DAte,'insert');ENDIF;
+END;
