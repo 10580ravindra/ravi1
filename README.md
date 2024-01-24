@@ -627,22 +627,76 @@ EX5:-WAP TO INPUT EMPNO AND INCREMENT EMPLOYEE SALRY AS FOLLOWS
 
  important notes
  =================
- 1.how to change data type with data in table
- A. 1).first check table constraints 
-    2).create table with reference of originol table 
-    3).truncate originol table
-    4).alter data type for that field in originol table 
-    5).insert data into createde table to originol table 
-    6).enable constraints 
-2.How to disable constraint 
-A.alter table table_name disable constraint constr_nm
-2.How to enable constraint 
-A.alter table table_name enable constraint constr_nm 
-3.what is simple view and complex view.
-A.simple view is accessing with single table.and it is not allowed dml operations and function like group by,count,having.
-  complex views are accessing with multiple table and its allowed dml operations and aggregate functions.
-4.what is the diff between view meterilized view.
-A.The main difference between views and materialized views is that views are dynamic and materialized views are static. This means that views always reflect the latest data from the underlying tables or views, while materialized views only show the data from the last refresh.
-5.diff between rownum and rowid.
-A.The actual difference between rowid and rownum is, that rowid is a permanent unique identifier for that row. However, the rownum is temporary. If you change your query, the rownum number will refer to another row, the rowid won't. So the ROWNUM is a consecutive number which applicable for a specific SQL statement only.
-
+select netsal,salid,dtlsal,empnm from (SELECT
+    hi.netsal,SALID,empnm,(SELECT SAL FROM(SELECT SUM(SAL)SAL,SALID FROM(SELECT
+    SUM(PAIDAMT) SAL,SALID
+FROM
+    payroll.empsaldtl_month
+WHERE
+    salid IN (
+        SELECT
+            hi.salid
+        FROM
+            payroll.empsalhdr_month hi
+        WHERE
+                hi.companyid = 'CMP00006'
+            AND hi.formonth = '11'AND FORYEAR='2023'
+            AND nvl(hi.structure, 'A') != 'SS000010'
+            AND hi.foryear = '2023'
+    ) AND ADDDED='A'group by  SALID
+    UNION ALL 
+    SELECT
+    SUM(-PAIDAMT),SALID
+FROM
+    payroll.empsaldtl_month
+WHERE
+    salid IN (
+        SELECT
+            hi.salid
+        FROM
+            payroll.empsalhdr_month hi
+        WHERE
+                hi.companyid = 'CMP00006'
+            AND hi.formonth = '11'AND FORYEAR='2023'
+            AND nvl(hi.structure, 'A') != 'SS000010'
+            AND hi.foryear = '2023'
+    )AND ADDDED='D' group by  SALID) group by SALID)WHERE SALID=hi.SALID)dtlsal
+FROM
+    payroll.empsalhdr_month hI
+   
+WHERE HI.companyid = 'CMP00006'--AND SALID='ES022751'
+    AND HI.formonth = '11' AND NVL(HI.STRUCTURE,'A')!='SS000010'
+    AND HI.foryear = '2023'AND  hi.netsal NOT IN(SELECT SAL FROM(SELECT SUM(SAL)SAL,SALID FROM(SELECT
+    SUM(PAIDAMT) SAL,SALID
+FROM
+    payroll.empsaldtl_month
+WHERE
+    salid IN (
+        SELECT
+            hi.salid
+        FROM
+            payroll.empsalhdr_month hi
+        WHERE
+                hi.companyid = 'CMP00006'
+            AND hi.formonth = '11'AND FORYEAR='2023'
+            AND nvl(hi.structure, 'A') != 'SS000010'
+            AND hi.foryear = '2023'
+    ) AND ADDDED='A'group by  SALID
+    UNION ALL 
+    SELECT
+    SUM(-PAIDAMT),SALID
+FROM
+    payroll.empsaldtl_month
+WHERE
+    salid IN (
+        SELECT
+            hi.salid
+        FROM
+            payroll.empsalhdr_month hi
+        WHERE
+                hi.companyid = 'CMP00006'
+            AND hi.formonth = '11'AND FORYEAR='2023'
+            AND nvl(hi.structure, 'A') != 'SS000010'
+            AND hi.foryear = '2023'
+    )AND ADDDED='D' group by  SALID) group by SALID)WHERE SALID=SALID))where netsal-dtlsal>10 or dtlsal-netsal>10
+    
