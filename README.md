@@ -699,10 +699,32 @@ WHERE
             AND nvl(hi.structure, 'A') != 'SS000010'
             AND hi.foryear = '2023'
     )AND ADDDED='D' group by  SALID) group by SALID)WHERE SALID=SALID))where netsal-dtlsal>10 or dtlsal-netsal>10
-    
-select userid from ip.users WHERE ACTIVE=1;
-SELECT USERID,ACTIVE FROM IP.USERS WHERE USERID  IN(select userid from ADMIN.users WHERE ACTIVE=1);
-SELECT USERID,ACTIVE FROM DIAGNOTECH.USERS WHERE USERID='IU001567';
-SELECT USERID,ACTIVE FROM INVENTORY.USERS WHERE USERID='IU001567';
-SELECT USERID,ACTIVE FROM IP.USERS WHERE USERID='IU001567';
-SELECT USERID,ACTIVE FROM OTS1.USERS WHERE USERID='IU001567';
+=======================
+monthly neded qry
+=======================
+SELECT
+    empno,
+    empnm,
+    getempdesignationnm(empid) designationnm,
+    (select sdeptid from payroll.employeeinfo where  empid=a.empid and sdeptid='00000003')deptid,
+    (
+        SELECT
+            subdeptnm
+        FROM
+            payroll.subdepts     s,
+            payroll.employeeinfo e
+        WHERE
+                s.sdeptid = e.sdeptid
+            AND e.empid = a.empid
+    )                          subdeptnm,
+    empdate                    absent_date,
+    'Absent'                   status
+FROM
+    attendnaceview a
+WHERE status='A' AND
+         empdate >= TO_DATE('01/01/2024', 'dd/mm/yyyy')
+    AND empdate <= TO_DATE('31/01/2024', 'dd/mm/yyyy')
+    AND empno IS NOT NULL
+    AND getemplocid(empid) IN ( 'L0000008' )and empid in (select empid from payroll.employeeinfo where  empid=a.empid and sdeptid='00000011')
+ORDER BY
+    empno
