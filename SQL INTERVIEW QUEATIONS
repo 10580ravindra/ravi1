@@ -96,3 +96,56 @@ ELSEIF UPADTING THEN
 INSERT INTO EMP(EMP_NO,DEPTID,USER_NM,OPERATION)
 VALUES(:OLD.Sh_emp_no,OLD.sh_deptid,v_user,v_DAte,'insert');ENDIF;
 END;
+14.What Is Collections.
+A. A Homogenious single dimensions data structure which is made of elements of same datatypes is called Collections.
+   * The PL/SQL Collections consist of a cell with subscript is called index.
+   * Data is stored into these fields and can be identified and accessed using index number.
+Types of Collections:-
+---------------------
+   * Persistant
+        1.Nested Tables
+        2.VARRAYS
+   * Non_Persistant
+        1.Associative Arrays
+NESTED TABLES
+----------------
+* Nested Tables Are Nested Collections.
+* Nested Tables Has No Upper Limits On Rows.
+VARRAYS
+-------
+* Variable_Sized Arrays are persistant collections.
+* VARRAYs are Bounded(VARRAYS can be hold fixed amount elments)
+ASSOCIATIVE ARRAYS
+-------------------
+* Associative Arrays are non_persistant collections.
+* They can't stored into the database
+* They can't reuse
+* Available In PL/SQL block sessions.
+15.How to Create nested Table Collections.
+A.DECLARE 
+  Type My_nested_table is TABLE OF number;
+  v_var My_nested_table :=My_nested_table(2,5,4,2,6,8,3,7,6,5,9);
+BEGIN 
+dbms_output_put.Line('value of index'||v_var(1));
+END;
+A.DECLARE 
+  Type My_nested_table is TABLE OF number;
+  v_var My_nested_table :=My_nested_table(2,5,4,2,6,8,3,7,6,5,9);
+BEGIN 
+FOR I IN 1..v_var.count
+loop 
+dbms_output.put_Line('value stored at index' ||' '||i ||' '||'is '||' '||v_var(i));
+end loop;
+END;
+16.What Is Nested Table.
+A.Nested is a one dimensional data structure which are presistant and unbounded in nature.
+it accessiable sql and plsql and table ,records and objects definations.
+17.How To create nested table using data base collection objects.
+A.CREATE OR REPLACE type My_nested_table IS TABLE OF VARCHAR2(100);
+  CREATE TABLE MY_SUBJECT (SUB_ID VARCHAR2(10),SUB_NAME VARCHAR2(100),sub_schedule_day my_nested_table)
+NESTED TABLE sub_schedule_day STORE AS nested_space;
+
+insert into MY_SUBJECT(sub_id,sub_name,sub_schedule_day)
+values('10','maths',My_nested_table('sun','wen','friday'));
+
+select * from MY_SUBJECT;
