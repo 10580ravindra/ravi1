@@ -173,3 +173,130 @@ COMMIT;
 RETURN b;
 END;
 
+18.How to use Autonomous Transaction?
+
+For making a transaction as Autonomous Transaction we need to employ AUTONOMOUS_TRANSACTION pragma in the declaration section of PL/SQL block as shown in below block.
+
+DECLARE
+    PRAGMA  AUTONOMOUS_TRANSACTION;
+BEGIN
+    ...
+END;
+Below example illustrates how to use AUTONOMOUS_TRANSACTION. We have created two tables EMPLOYEE,TABLE_AUDIT, one sequence TABLE_AUDIT_ID_SEQ.
+
+CREATE TABLE EMPLOYEE
+(
+    EMP_ID     NUMBER(10),
+    EMP_NAME   VARCHAR2(40),
+    DEPT_ID     NUMBER(10)
+);
+
+CREATE TABLE TABLE_AUDIT
+(
+  ID            NUMBER(10) NOT NULL,
+  ACTION        VARCHAR2(10) NOT NULL,  
+  CREATED_TIME  TIMESTAMP
+);
+
+CREATE SEQUENCE TABLE_AUDIT_ID_SEQ;
+See the below definition for the trigger TIG_AUDIT_EMP. We have not used Autonomous_Transaction in this trigger.
+
+CREATE OR REPLACE TRIGGER TIG_AUDIT_EMP
+AFTER INSERT OR UPDATE OR DELETE ON EMPLOYEE
+FOR EACH ROW
+BEGIN
+    IF INSERTING THEN
+        INSERT INTO TABLE_AUDIT 
+    VALUES (TABLE_AUDIT_ID_SEQ.NEXTVAL,'INSERT',SYSTIMESTAMP);
+    ELSIF UPDATING THEN
+        INSERT INTO TABLE_AUDIT 
+    VALUES (TABLE_AUDIT_ID_SEQ.NEXTVAL,'UPDATE',SYSTIMESTAMP);
+    ELSE
+        INSERT INTO TABLE_AUDIT 
+    VALUES (TABLE_AUDIT_ID_SEQ.NEXTVAL,'DELETE',SYSTIMESTAMP);   
+    END IF;
+END;
+Now we are ready with all necessary database objects for our demonstration. I am executing INSERT and UPDATE statement on employee table and commiting the transaction.
+
+SQL> INSERT INTO EMPLOYEE VALUES(1,'RAM','10');
+1 row created.
+SQL> INSERT INTO EMPLOYEE VALUES(2,'GANESH',11);
+1 row created.
+SQL> UPDATE EMPLOYEE SET DEPT_ID = 15 WHERE EMP_ID = 1;
+1 row updated.
+SQL> COMMIT;
+Commit complete.
+
+SQL> SELECT * FROM EMPLOYEE;
+    EMP_ID EMP_NAME     DEPT_ID
+---------- ------------ ----------
+         1 RAM          15
+         2 GANESH       11
+
+SQL> SELECT * FROM TABLE_AUDIT;
+        ID ACTION    CREATED_TIME
+---------- --------- ----------------------------
+         1 INSERT   24-JUL-13 03.26.51.819656 PM
+         2 INSERT   24-JUL-13 03.27.39.634371 PM
+         3 UPDATE   24-JUL-13 03.28.20.243719 PM
+Both tables are having the all the transaction data. But what if we issue DML Statement and ROLLBACK the transaction.
+
+SQL> INSERT INTO EMPLOYEE VALUES (4,'Sagar',20);
+1 row created.
+SQL> INSERT INTO EMPLOYEE VALUES(5,'Prampod',21);
+1 row created.
+SQL> DELETE FROM EMPLOYEE WHERE EMP_ID = 1;
+1 row deleted.
+SQL> ROLLBACK;
+Rollback complete.
+
+SQL> SELECT * FROM TABLE_AUDIT;
+        ID ACTION    CREATED_TIME
+---------- --------- ----------------------------
+         1 INSERT   24-JUL-13 03.26.51.819656 PM
+         2 INSERT   24-JUL-13 03.27.39.634371 PM
+         3 UPDATE   24-JUL-13 03.28.20.243719 PM
+TABLE_AUDIT is not having the above transaction statements data. But we should have all the transaction data whether transaction gets COMMIT or ROLLBACK.
+
+For this we need to make trigger transaction as Autonomous_Transaction. See the below updated trigger defition.
+
+CREATE OR REPLACE TRIGGER TIG_AUDIT_EMP
+AFTER INSERT OR UPDATE OR DELETE ON EMPLOYEE
+FOR EACH ROW
+DECLARE
+    PRAGMA  AUTONOMOUS_TRANSACTION;
+BEGIN
+    IF INSERTING THEN
+        INSERT INTO TABLE_AUDIT 
+    VALUES (TABLE_AUDIT_ID_SEQ.NEXTVAL,'INSERT',SYSTIMESTAMP);
+    ELSIF UPDATING THEN
+        INSERT INTO TABLE_AUDIT 
+    VALUES (TABLE_AUDIT_ID_SEQ.NEXTVAL,'UPDATE',SYSTIMESTAMP);
+    ELSE
+        INSERT INTO TABLE_AUDIT 
+    VALUES (TABLE_AUDIT_ID_SEQ.NEXTVAL,'DELETE',SYSTIMESTAMP);   
+    END IF;
+
+    COMMIT;
+
+END;
+I am executing the above rollback statements once again.
+
+SQL> INSERT INTO EMPLOYEE VALUES (4,'Sagar',20);
+1 row created.
+SQL> INSERT INTO EMPLOYEE VALUES(5,'Prampod',21);
+1 row created.
+SQL> DELETE FROM EMPLOYEE WHERE EMP_ID = 1;
+1 row deleted.
+SQL> ROLLBACK;
+Rollback complete.
+
+SQL> SELECT * FROM TABLE_AUDIT;
+        ID ACTION     CREATED_TIME
+---------- ---------- ------------------------------
+         1 INSERT     24-JUL-13 03.26.51.819656 PM
+         2 INSERT     24-JUL-13 03.27.39.634371 PM
+         3 UPDATE     24-JUL-13 03.28.20.243719 PM
+         8 INSERT     24-JUL-13 04.28.15.410866 PM
+         9 INSERT     24-JUL-13 04.28.22.401043 PM
+        10 DELETE     24-JUL-13 04.28.27.615402 PM
