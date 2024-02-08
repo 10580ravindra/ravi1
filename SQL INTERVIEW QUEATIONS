@@ -144,8 +144,32 @@ it accessiable sql and plsql and table ,records and objects definations.
 A.CREATE OR REPLACE type My_nested_table IS TABLE OF VARCHAR2(100);
   CREATE TABLE MY_SUBJECT (SUB_ID VARCHAR2(10),SUB_NAME VARCHAR2(100),sub_schedule_day my_nested_table)
 NESTED TABLE sub_schedule_day STORE AS nested_space;
-
 insert into MY_SUBJECT(sub_id,sub_name,sub_schedule_day)
 values('10','maths',My_nested_table('sun','wen','friday'));
-
 select * from MY_SUBJECT;
+17.What is pragma autonomous transaction.
+A.The AUTONOMOUS_TRANSACTION pragma marks a routine as autonomous; that is, independent of the main transaction. In this context,
+a routine is one of these: Schema-level (not nested) anonymous PL/SQL block. Standalone, package, or nested subprogram.
+simple word
+--------------
+Pragma Autonomous Transaction Is uniq transaction for before transactions .it is not reflected to another trasactions.
+we can user this transactions in PROCEDURES,FUNCTIONS,PAKAGES AND NESTED SUBPROGRAMS
+
+DECLARE 
+PRAGMA AUTONOMOUS_TRANSACTION 
+BEGIN
+INSERT INTO <TNM>VALUES(VALUE);
+COMMIT/ROLLBACK;
+END;/
+
+
+create or replace FUNCTION PRAGMA_INSERTing (N number,s number,ma NUMBER,e varchar2)
+RETURN VARCHAR2 AS b VARCHAR2(100);
+PRAGMA AUTONOMOUS_TRANSACTION;
+BEGIN 
+insert INTO emp (emp_no,salary,manager,empid)values(N,s,ma,e);
+B:='EMP_NO '||' '||N||',SALARY '||' '||S||',MANAGER '||' '||MA||',EMPID '||' '||E;
+COMMIT;
+RETURN b;
+END;
+
