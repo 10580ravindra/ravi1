@@ -1,3 +1,62 @@
+Absenties
+----------------
+select count(*) from (select EMPNO,EMPNM,GETEMPDESIGNATIONNM(EMPID) DESIGNATIONNM,EMPDATE Absent_date,'Absent' STATUS  FRom 
+ATTENDNACEVIEW a where STATUS='A'  And EMPDATE>=To_Date('01/02/2024','dd/mm/yyyy')
+   And EMPDATE<=To_Date('29/02/2024','dd/mm/yyyy')
+   and empno in (select empcode from payroll.employeeinfo where SDEPTID in(select sdeptid from payroll.subdepts where sdeptid='00000011'))
+   and empno is not null  and GETEMPLOCID(empid) in ('L0000002 ') order by empno)  ;
+     
+Over Time
+-------------
+select count(*) from (SELECT 
+	slno,
+	approval,
+	empnm,
+	ot_hrs,
+	(case when OTAVAILED=1 then '0' when hrappoved in ('Rejected','Convert to CompOff') then '0' else approvedhrs end )approvedhrs,
+	empno,
+	transdt,
+	to_char(login_tm,'hh:mi:ss am') login_tm,
+to_char(logout_tm,'hh:mi:ss am') logout_tm,
+	to_char(shift_fromtm,'hh:mi:ss am') shift_fromtm,
+	to_char(shift_totm,'hh:mi:ss am')shift_totm,shift,
+	empid,
+	hrappoved,case when OTAVAILED=1 then 'Availed' else '' end OTAVAILED
+FROM
+	(
+		SELECT
+			slno,
+			hrappoved                             approval,
+			employeename                          empnm,
+			ottime                                ot_hrs,
+			hrs                                   approvedhrs,
+			employeecode                          empno,
+			otdate                                transdt,
+                  (case when WVF_GetShiftidSGOut(empid,otdate) in (select shiftkeyid from PAYROLL.roastershifts where nightshift = 1) then 
+wvf_getattnlogouttmsgns(empid,otdate,fkid)
+else wvf_getattnlogouttmsg(empid,otdate,WVF_GetShiftidSG(otapprovalhrdtl.empid, otdate)) end) logout_tm,
+                   
+                (case when WVF_GetShiftidSG(empid,otdate) in (select shiftkeyid from PAYROLL.roastershifts where nightshift = 1) then 
+ wvf_getattnlogintmsgns(empid,otdate) else
+ wvf_getattnlogintmsg(empid,otdate,WVF_GetShiftidSG(otapprovalhrdtl.empid, otdate)) end)      login_tm,
+			wvf_getattnshiftfrtmintmzoi1(otapprovalhrdtl.empid,
+ otdate)   shift_fromtm,
+			wvf_getattnshifttotmintmzoi(otapprovalhrdtl.empid,
+ otdate)   shift_totm,
+ WVF_GetShiftidSG(otapprovalhrdtl.empid, otdate) shift,
+			otapprovalhrdtl.empid,decode(HRAPPOVED,'1','Approved','2','Rejected','3','Convert to CompOff') hrappoved	,OTAVAILED
+		FROM 
+			payroll.otapprovalhrdtl, 
+			payroll.otapprovalhr 
+		WHERE 
+			    pkid=fkid 
+			AND otdate>=TO_DATE('01/02/2024','dd/mm/yyyy')
+			AND otdate<=TO_DATE('29/02/2024','dd/mm/yyyy')
+AND GETPAYROLLEMPSDEPT(EMPID) In ( '00000003')       
+			AND empid IN ( select empid from payroll.employeeinfo where locid in ('Loc00001') )
+			AND hrs>0        
+	) 
+order by empno,empnm,transdt               )              
 revenue code for accounts
 ==========================
 select TYPE ,BTYPE ,MD ,MODULE ,BILLDT ,BILLID ,BILLNO ,BILLNO2 ,LOCBILLNO ,ACTBILLNO ,NAME ,
