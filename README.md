@@ -1,3 +1,15 @@
+
+
+
+night audit
+-------------
+select * from (select sum(rcamt)a,sourceid,(select sum(paid)paid from tcvhdr1403202414032024 where locid='L0000002'AND PAID>0 and billid=sourceid
+AND BILLID LIKE'%M0%')amt from mrc1403202414032024 where locid='L0000002' AND RCAMT>0 
+AND SOURCEID LIKE'%M0%' group by sourceid ORDER BY SOURCEID DESC)where a!=amt  ;
+
+
+
+
 Absenties
 ----------------
 select count(*) from (select EMPNO,EMPNM,GETEMPDESIGNATIONNM(EMPID) DESIGNATIONNM,EMPDATE Absent_date,'Absent' STATUS  FRom 
