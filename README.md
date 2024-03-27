@@ -1,4 +1,16 @@
+ROL AND ROQ UPDATE
+------------------------
+insert into INVENTORY.dmedmast (mednm,medid,subdeptid,rol,roq,MAXQTY,userid,usernm,MEDCODE,potency,active,genericnm,schedule,unit,
+unitsize,unit2,mtypenm,mtypeid,manid,catid,subcatid,invmethod,purexp,saleloose,mitemid)
+(select  h.SERVICENM,h.MEDICINEID,h.SDEPT,h.SERVICERATE,h.CODE,h.MXQUTY,'IU001567','10580RAVINDRA',d.MEDCODE,d.potency,d.active,d.genericid,
+d.schedule,d.unit,d.unitsize,unit2,d.mtypeid,d.mtypeid,d.manid,d.catid,d.subcatid,d.invmethod,d.purexp,d.saleloose,d.medid
+from admin.serviceratesvf_dtl h,
+INVENTORY.medmast d where  MEDICINEID=medid );
 
+update admin.serviceratesvf_dtl set MEDICINEID =( select distinct medid from inventory.medmast where upper(mednm)=upper(SERVICENM) and rownum=1);
+
+
+SELECT SERVICENM,SERVICERATE ROL,CODE ROQ,MXQUTY,GETSUBDEPTNM(SDEPT)SUBDEPTNM FROM serviceratesvf_dtl WHERE medicineid NOT IN (select NVL(MEDID,'A') from  INVENTORY.dmedmast WHERE MEDID=MEDICINEID) ORDER BY SDEPT ASC 
 
 
 night audit
