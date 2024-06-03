@@ -23,9 +23,18 @@ end loop;
 end;
 ROL AND ROQ UPDATE
 ------------------------
+select * from admin.serviceratesvf_dtl where upper(servicenm) in (select  upper(mednm) from inventory.medmast );
+update admin.serviceratesvf_dtl set sdept='SD000119';
+select * from inventory.subdepts;
+
+select * from inventory.medmast where upper(mednm)in(select upper(servicenm)from admin.serviceratesvf_dtl );
+
+delete from  inventory.dmedmast  minute where medid in (select medicineid from admin.serviceratesvf_dtl);
+
+
 insert into INVENTORY.dmedmast (mednm,medid,subdeptid,rol,roq,MAXQTY,userid,usernm,MEDCODE,potency,active,genericnm,schedule,unit,
 unitsize,unit2,mtypenm,mtypeid,manid,catid,subcatid,invmethod,purexp,saleloose,mitemid)
-(select  h.SERVICENM,h.MEDICINEID,h.SDEPT,h.SERVICERATE,h.CODE,h.MXQUTY,'IU001567','10580RAVINDRA',d.MEDCODE,d.potency,d.active,d.genericid,
+(select  h.SERVICENM,h.MEDICINEID,h.SDEPT,h.CODE,h.SERVICERATE,h.MXQUTY,'IU001567','10580RAVINDRA',d.MEDCODE,d.potency,d.active,d.genericid,
 d.schedule,d.unit,d.unitsize,unit2,d.mtypeid,d.mtypeid,d.manid,d.catid,d.subcatid,d.invmethod,d.purexp,d.saleloose,d.medid
 from admin.serviceratesvf_dtl h,
 INVENTORY.medmast d where  MEDICINEID=medid );
@@ -33,9 +42,8 @@ INVENTORY.medmast d where  MEDICINEID=medid );
 update admin.serviceratesvf_dtl set MEDICINEID =( select distinct medid from inventory.medmast where upper(mednm)=upper(SERVICENM) and rownum=1);
 
 
-SELECT SERVICENM,SERVICERATE ROL,CODE ROQ,MXQUTY,GETSUBDEPTNM(SDEPT)SUBDEPTNM FROM serviceratesvf_dtl WHERE medicineid NOT IN (select NVL(MEDID,'A') from  INVENTORY.dmedmast WHERE MEDID=MEDICINEID) ORDER BY SDEPT ASC 
-
-
+SELECT SERVICENM,SERVICERATE ROL,CODE ROQ,MXQUTY,GETSUBDEPTNM(SDEPT)SUBDEPTNM FROM serviceratesvf_dtl WHERE medicineid
+NOT IN (select NVL(MEDID,'A') from  INVENTORY.dmedmast WHERE MEDID=MEDICINEID) ORDER BY SDEPT ASC 
 night audit
 -------------
 select * from (select sum(rcamt)a,sourceid,(select sum(paid)paid from tcvhdr1403202414032024 where locid='L0000002'AND PAID>0 and billid=sourceid
